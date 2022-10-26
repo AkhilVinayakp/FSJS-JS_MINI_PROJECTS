@@ -2,3 +2,13 @@
     height: 70%;
     width: 70%;
 }
+textarea {
+    resize: none !important;
+    outline: none !important;
+    padding: 32px !important;
+    width: 70%;
+    height: 460px;
+}
+.side-content{
+    font-size: 2rem;
+}
