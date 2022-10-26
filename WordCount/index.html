@@ -4,22 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.33.0/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Word Couter</title>
 </head>
+<style>
+
+    textarea {
+        resize: none !important;
+        outline: none !important;
+        padding: 32px !important;
+        width: 90%;
+        height: 460px;
+    }
+    .side-content{
+        font-size: 2rem;
+    }
+</style>
 <body>
-    <div class="wrapper flex justify-center h-screen items-center">
-        <div class=" wrapper-inner card w-96 glass">
+    <div class="flex justify-center h-screen items-center">
+        <div class="card w-[956px] glass">
             <div class="card-body">
                 <div class="flex justify-between gap-3">
                     <div class="side-content">
                         <h2 class="">WordCounter</h2>
                         <div class="btn gap-2">
-                            Count
-                            <div id="count_" class="badge badge-secondary">99</div>
-                          </div>
+                            Text Length
+                            <div id="count_T" class="badge badge-secondary">00</div>
+                        </div>
+                        <div class="btn gap-2">
+                            Word Count
+                            <div id="count_W" class="badge badge-secondary">00</div>
+                        </div>
                     </div>  
                     <textarea id="text-content" rows="4" cols="50" class="text-[#023047]"> </textarea>
                 </div>
@@ -30,6 +46,20 @@
           </div>
     </div>
 
-    <script src="./app.js"></script>
+    <script>
+    const countElement_T = document.getElementById("count_T");
+    const countElement_W = document.getElementById("count_W");
+    const textElement = document.getElementById("text-content");
+    textElement.addEventListener("input", (e)=>{
+        let content = e.target.textLength;
+        let contentStr = e.target.value;
+        contentStr = contentStr.split(" ");
+        console.log(`Given content ${contentStr}`)
+        console.log(e.target)
+        console.log(`Content given ${content}`)
+        countElement_T.textContent = content;
+        countElement_W.textContent = contentStr.length;
+    });
+    </script>
 </body>
 </html>
