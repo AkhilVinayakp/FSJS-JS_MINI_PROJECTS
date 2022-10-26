@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.33.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="flex justify-center h-screen items-center bg-[#14213d]">
+        <div class="card w-[634px] h-[420px] bg-base-50 shadow-xl image-full">
+            <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+            <div class="card-body flex justify-between">
+                <h2 class="card-title text-white">StopWatch</h2>
+                <div class="timer text-3xl text-center text-[#eb5e28]">
+                    <span id="h">00</span> ::
+                    <span id="m">00</span> ::
+                    <span id="s">00</span> ::
+                    <span id="ms">00</span>
+                </div>
+                <div class="card-actions justify-end">
+                    <button id="start_btn" class="btn hbtn btn-primary">START</button>
+                    <button id="reset_btn" class="btn hbtn btn-warning">RESET</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>
