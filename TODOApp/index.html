@@ -9,8 +9,8 @@
     <title>TODO</title>
 </head>
 <body>
-    <div class="flex justify-center h-screen items-center">
-        <div class="card w-[956px] glass">
+    <div class="flex justify-center h-screen items-center py-12">
+        <div class="card w-[956px] h-full glass">
             <div class="card-body">
                 <div class="flex  gap-24">
                     <div class="side-content">
@@ -19,21 +19,11 @@
                             <div id="count_T" class="badge badge-secondary">00</div> TODOS
                         </div>
                     </div> 
-                    <div class="main-content flex flex-col">
-                        <ul id="todos" class="text-xl">
-                            <li class="border-2 w-[620px] h-16 p-1 flex justify-between items-center">
-                              <div class="text-2xl ">Sample</div>
-                              <div>
-                                <button class="btn btn-circle  btn-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                                  </button>
-                                  <button class="btn btn-circle  btn-outline">
-                                    <svg fill="white" class="h-6 w-6" stroke="currentColor" id="Layer_1" version="1.1" viewBox="0 0 29 30" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><rect fill="none" height="21.68" stroke="currentColor" transform="matrix(-0.7071 -0.7072 0.7072 -0.7071 10.4473 37.3449)" width="10.846" x="7.536" y="5.169"/><path d="M27.638,3.996l-2.46-2.459c-1.357-1.358-3.56-1.358-4.917,0l-1.725,1.724l7.67,7.669l1.725-1.724   C29.288,7.848,28.997,5.354,27.638,3.996z" fill="none"/><polygon fill="none"  points="0,30 7.088,30 0,22.28  "/></g></svg>
-                                  </button>
-                              </div>
-                            </li>
+                    <div class="main-content flex flex-col ml-12">
+                        <ul id="todos" class="text-xl max-h-[526px] overflow-y-auto">
+
                         </ul>
-                        <button class="btn btn-wide btn-outline mt-12">Add Task</button>
+                        <button id="addTask" class="btn btn-wide btn-outline mt-12">Add Task</button>
                     </div> 
                 </div>
               <div class="card-actions justify-end mt-12">
@@ -41,6 +31,19 @@
               </div>
             </div>
           </div>
-    
+          <template id="todoTemplate">
+            <li class="mb-4 w-[620px] h-16 p-1 flex justify-between items-center">
+                <div  class="text-2xl todo-content">Sample</div>
+                <div>
+                  <button  class="btn btn-circle  btn-outline" name="close-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                    <button class="btn btn-circle  btn-outline " name="edit-btn">
+                      <svg fill="white" class="h-6 w-6" stroke="currentColor" id="Layer_1" version="1.1" viewBox="0 0 29 30" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><rect fill="none" height="21.68" stroke="currentColor" transform="matrix(-0.7071 -0.7072 0.7072 -0.7071 10.4473 37.3449)" width="10.846" x="7.536" y="5.169"/><path d="M27.638,3.996l-2.46-2.459c-1.357-1.358-3.56-1.358-4.917,0l-1.725,1.724l7.67,7.669l1.725-1.724   C29.288,7.848,28.997,5.354,27.638,3.996z" fill="none"/><polygon fill="none"  points="0,30 7.088,30 0,22.28  "/></g></svg>
+                    </button>
+                </div>
+              </li>
+          </template>
+<script src="./scripts.js"></script>
 </body>
 </html>
