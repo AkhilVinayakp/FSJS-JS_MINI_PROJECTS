@@ -40,7 +40,7 @@
                     <textarea id="text-content" rows="4" cols="50" class="text-[#023047]"> </textarea>
                 </div>
               <div class="card-actions justify-end mt-12">
-                    <button class="btn btn-primary">Clear now!</button>
+                    <button id="clear" class="btn btn-primary">Clear now!</button>
               </div>
             </div>
           </div>
@@ -50,16 +50,19 @@
     const countElement_T = document.getElementById("count_T");
     const countElement_W = document.getElementById("count_W");
     const textElement = document.getElementById("text-content");
+    const clearElement = document.getElementById("clear");
     textElement.addEventListener("input", (e)=>{
         let content = e.target.textLength;
         let contentStr = e.target.value;
-        contentStr = contentStr.split(" ");
-        console.log(`Given content ${contentStr}`)
-        console.log(e.target)
-        console.log(`Content given ${content}`)
+        contentStr = contentStr.split(" ").filter((el)=>el!="")
         countElement_T.textContent = content;
         countElement_W.textContent = contentStr.length;
     });
+    clearElement.addEventListener('click', (event)=>{
+        textElement.value = null;
+        countElement_T.textContent = '00';
+        countElement_W.textContent = "00";
+    })
     </script>
 </body>
 </html>
