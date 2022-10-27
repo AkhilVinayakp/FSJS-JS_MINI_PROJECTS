@@ -5,9 +5,10 @@ const buildElement = function(){
     const liTemplate = document.getElementById("todoTemplate");
     const liClone  = liTemplate.content.firstElementChild.cloneNode(true); // cloning all inside template
     const todoContent = liClone.querySelector(".todo-content");
-    todoContent.textContent = "Sample....";
+    // todoContent.textContent = "Sample....";
     // todoCloseBtn.addEventListener('click',eventClose);
     eventClose(liClone);
+    eventEdit(liClone);
     return liClone;
 
 
@@ -33,6 +34,19 @@ function eventClose(element){
     todoCloseBtn.addEventListener('click', (event)=>{
         element.remove();
     })
+
+};
+
+function eventEdit(element){
+    /**
+     * edit the current todo  
+     */
+    const todoCloseEdit = element.querySelector('[name="edit-btn"]');
+    const todoContent = element.querySelector(".todo-content");
+    todoCloseEdit.addEventListener('click', (event)=>{
+        todoContent.removeAttribute('readonly')
+    })
+
 
 }
 
