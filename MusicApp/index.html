@@ -25,11 +25,11 @@
                     <button class="btn btn-sm btn-circle btn-outline">
                       <img src="./assets/previous.svg" alt="">
                      </button>
-                    <label class="swap">  
+                    <label class="swap" id="lb">  
                         <!-- this hidden checkbox controls the state -->
-                        <input type="checkbox" />
-                        <img class="swap-on fill-current " src="./assets/play.svg" alt="play">
-                        <img class="swap-off fill-current " src="./assets/pause.svg" alt="play">
+                        <input type="checkbox" id="pp" />
+                        <img class="swap-off fill-current " src="./assets/play.svg" alt="play">
+                        <img class="swap-on fill-current " src="./assets/pause.svg" alt="stop">
                     </label>
                     <button class="btn btn-sm btn-circle btn-outline">
                      <img src="./assets/next.svg" alt="">
@@ -38,12 +38,14 @@
                       <!-- this hidden checkbox controls the state -->
                       <input type="checkbox" />
                       <img class="swap-on fill-current " src="./assets/volume-active.svg" alt="play">
-                      <img class="swap-off fill-current " src="./assets/volume-muted.svg" alt="play">
+                      <img class="swap-off fill-current " src="./assets/volume-muted.svg" alt="stop">
                   </label>
                   </div>
                 </div>
               </div>
+            <div id="vis" class="mt-6 font-mono text-xl h-32 overflow-y-scroll"></div>
           </div>
+
         </div>
       </div>
     <script src="./app.js"></script>

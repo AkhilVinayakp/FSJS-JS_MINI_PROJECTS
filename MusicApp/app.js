@@ -3,3 +3,72 @@ let song_urls = [
     "https://dl.dropboxusercontent.com/s/n9vwho3qekfmuwt/4.%20cxlt.%20-%20Far%20Away%20.mp3?dl=0",
     "https://dl.dropboxusercontent.com/s/877yjaidp4tpx8j/Lost%20Files%20-%20Behind%20The%20Hill.mp3?dl=0"
 ]
+
+// controlls
+const playpause = document.querySelector("#pp")
+const lable = document.getElementById("lb");
+const logElement = document.getElementById("vis");
+
+
+// testing
+const audioContext = new AudioContext();
+const source = audioContext.createBufferSource();
+let buffer =  null;
+window.onload = main;
+
+function main(){
+    /**  
+     * fetch the current song when initiated
+     */
+    if(!buffer){
+       setBuffer();
+
+    }
+
+    playpause.addEventListener("change", (event)=>{
+        const target = event.target;
+        let target_status = target.checked;
+        if(target_status){
+            // alert("checked");
+            //start song
+            if(source.buffer){
+                logElement.textContent = "this feature pending";
+                source.start();
+            }
+            else{
+                source.buffer = buffer;
+                source.connect(audioContext.destination);
+                source.start();
+            }
+        }
+        else{
+            logElement.textContent = "stoping song";
+            source.stop();
+        }
+        
+    })
+}
+
+function setBuffer(){
+    /**
+     *   
+     */
+    const request = new XMLHttpRequest();
+    try{
+        request.open("Get", "./assets/song1.mp3");
+        // changing the response type to array buffer.
+        request.responseType = "arraybuffer";
+        request.onload = function() {
+            let undecodedAudio = request.response;
+            audioContext.decodeAudioData(undecodedAudio, (decoded)=>{
+                buffer = decoded;
+                console.log("buffer load for current song")
+            });
+        }
+        request.send();
+    }
+    catch(err){
+        console.log("can not load audio file check the connection");
+        console.log(err);
+    }
+}
