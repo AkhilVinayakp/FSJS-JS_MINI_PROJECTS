@@ -8,14 +8,16 @@ let song_urls = [
 const playpause = document.querySelector("#pp")
 const lable = document.getElementById("lb");
 const logElement = document.getElementById("vis");
-let stated_loc;
-let stopped_loc;
-let isPaused;
+const volumeCtrl = document.getElementById("volume-ctrl");
+const volumeImg = document.querySelectorAll(".vol-img");
+let currentGain;
+let tempGain; // to store the previous gain value when muted
 
 
 // testing
 const audioContext = new AudioContext();
 const source = audioContext.createBufferSource();
+let gainNode = audioContext.createGain();
 let buffer =  null;
 window.onload = main;
 
@@ -36,29 +38,37 @@ function main(){
             // alert("checked");
             //start song
             if(source.buffer){
-                logElement.textContent = "this feature pending";
                 audioContext.resume().then(()=>{
                     logElement.textContent = "resumed";
                 })
             
             }
-            else{
-                source.buffer = buffer;
-                source.connect(audioContext.destination);
-                source.start();
-            }
+            else playSong();
         }
         else{
             audioContext.suspend().then(()=>logElement.textContent="suspended")
         }
         
-    })
+    });
+    volumeImg.forEach((e)=>{ 
+        e.addEventListener("mouseover", giveVolumeHoverMsgIn)
+        e.addEventListener("mouseout", (event)=>logElement.textContent="");
+    });
+    volumeCtrl.addEventListener("change", ctrlVolume);
 }
 
-function playSong(position){
+function playSong(){
     /**
      * play the song from the current poition   
+     * added gain node
+     *  Chain: source -> gain -> Destination
      */
+
+    source.buffer = buffer;
+    source.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    source.start();
+    currentGain = gainNode.gain.value;
 }
 
 
@@ -84,4 +94,36 @@ function setBuffer(){
         console.log("can not load audio file check the connection");
         console.log(err);
     }
+}
+
+function giveVolumeHoverMsgIn(event){
+    /**
+     * show messages when the hover on the volume icon.  
+     */
+    console.log("moseover")
+    logElement.textContent = `Scroll up/down to control volume. Press to mute/unmute.\n Current gain ${currentGain}`
+    // event.target.addEventListener("");
+
+}
+
+function ctrlVolume(event){
+    /**
+     * mute and unmute the volume;  
+     */
+    let audio_status = event.target.checked;
+    if(audio_status){
+        // muted
+        tempGain = gainNode.gain.value;
+        gainNode.gain.value = 0;
+        
+    }
+    else{
+        //unmute
+        if(tempGain){
+            gainNode.gain.value = tempGain;
+        }
+        else gainNode.gain.value = 1;
+    }
+
+
 }

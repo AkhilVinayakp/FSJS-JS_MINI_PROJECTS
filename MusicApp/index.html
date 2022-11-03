@@ -36,18 +36,20 @@
                     </button>
                     <label class="swap ">  
                       <!-- this hidden checkbox controls the state -->
-                      <input type="checkbox" />
-                      <img class="swap-on fill-current " src="./assets/volume-active.svg" alt="play">
-                      <img class="swap-off fill-current " src="./assets/volume-muted.svg" alt="stop">
+                      <input type="checkbox" id="volume-ctrl" />
+                      <img class="swap-on fill-current vol-img" src="./assets/volume-muted.svg" alt="stop">
+                      <img class="swap-off fill-current vol-img" src="./assets/volume-active.svg" alt="play">
+                      
                   </label>
                   </div>
                 </div>
               </div>
-            <div id="vis" class="mt-6 font-mono text-xl h-32 overflow-y-scroll"></div>
+              <div id="vis" class="border-2 mt-6 font-mono text-xl h-32 w-[656px] overflow-y-scroll"></div>
           </div>
-
+          
         </div>
       </div>
+      
     <script src="./app.js"></script>
 </body>
 </html>
