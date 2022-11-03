@@ -8,6 +8,9 @@ let song_urls = [
 const playpause = document.querySelector("#pp")
 const lable = document.getElementById("lb");
 const logElement = document.getElementById("vis");
+let stated_loc;
+let stopped_loc;
+let isPaused;
 
 
 // testing
@@ -15,6 +18,7 @@ const audioContext = new AudioContext();
 const source = audioContext.createBufferSource();
 let buffer =  null;
 window.onload = main;
+
 
 function main(){
     /**  
@@ -33,7 +37,10 @@ function main(){
             //start song
             if(source.buffer){
                 logElement.textContent = "this feature pending";
-                source.start();
+                audioContext.resume().then(()=>{
+                    logElement.textContent = "resumed";
+                })
+            
             }
             else{
                 source.buffer = buffer;
@@ -42,12 +49,18 @@ function main(){
             }
         }
         else{
-            logElement.textContent = "stoping song";
-            source.stop();
+            audioContext.suspend().then(()=>logElement.textContent="suspended")
         }
         
     })
 }
+
+function playSong(position){
+    /**
+     * play the song from the current poition   
+     */
+}
+
 
 function setBuffer(){
     /**
