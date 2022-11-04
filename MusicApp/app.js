@@ -5,17 +5,21 @@ let song_urls = [
 ]
 
 // controlls
-const playpause = document.querySelector("#pp")
+const playpause = document.querySelector("#pp");
 const lable = document.getElementById("lb");
 const logElement = document.getElementById("vis");
 const volumeCtrl = document.getElementById("volume-ctrl");
 const volumelevelCtrl = document.getElementById("v-level");
+const timeline = document.getElementById("timeline");
+const timelineContainer = document.getElementById("t-container")
 
 
 // variables
 let currentGain;
 let tempGain; // to store the previous gain value when muted
 let buffer =  null;
+let c_duration = null;
+let runner = null;
 
 // testing
 const audioContext = new AudioContext();
@@ -81,10 +85,24 @@ function playSong(){
      */
 
     source.buffer = buffer;
+    let duration = source.buffer.duration;
+    console.log("buffer duration ", duration)
+    let mm = duration%60;
+    mm = Math.round(mm);
+    mm = mm/100
+    console.log(mm)
+    duration = Math.floor(duration/60);
+    console.log(duration)
+    duration = duration + mm;
+
+    
+    duration = duration.toFixed(2);
+    console.log("proccess duration ", duration)
     source.connect(gainNode);
     gainNode.connect(audioContext.destination);
     source.start();
     currentGain = gainNode.gain.value;
+    setTimeline(duration, source.buffer.duration);
 }
 
 
@@ -133,9 +151,35 @@ function ctrlVolume(event){
     }
 }
 
-function gainAdjust(event){
-    /**
-     * control volume  
-     */
+function setTimeline(duration, buffer_value){
+    console.log("total duration ", duration)
+    const total_time = document.getElementById("total-t");
+    const current_time =  document.getElementById("current-t");
+    timelineContainer.classList.remove("hidden");
+    let durationStr = String(duration).split('.');
+    durationStr = durationStr.join(":");
+    total_time.textContent = durationStr;
+    c_duration = 0;
+    let delta = 0;
+    let min_duration = 0;
+    runner = setInterval(()=>{
+        c_duration = c_duration + 1
+        delta += 1;
+        if(c_duration == 60){
+            c_duration = 0;
+            min_duration += 1;
+        }
+        let c_duration_mins = Number(`${min_duration}.${c_duration}`)
+        if(delta >= buffer_value){
+            clearInterval(runner);
+        }
+        current_time.textContent = c_duration_mins.toFixed(2);
+        // setting the timeline view
+        let t_percent = (delta/buffer_value) * 100;
+        t_percent = Math.round(t_percent);
+        // logElement.textContent = `${delta}  upto ${buffer_value}  and ${t_percent}`
+        timeline.setAttribute("value", t_percent)
+
+    }, 1000);
 
 }
