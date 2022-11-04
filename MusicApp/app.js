@@ -9,7 +9,6 @@ const playpause = document.querySelector("#pp")
 const lable = document.getElementById("lb");
 const logElement = document.getElementById("vis");
 const volumeCtrl = document.getElementById("volume-ctrl");
-const volumeImg = document.querySelectorAll(".vol-img");
 let currentGain;
 let tempGain; // to store the previous gain value when muted
 
@@ -50,11 +49,8 @@ function main(){
         }
         
     });
-    volumeImg.forEach((e)=>{ 
-        e.addEventListener("mouseover", giveVolumeHoverMsgIn)
-        e.addEventListener("mouseout", (event)=>logElement.textContent="");
-    });
     volumeCtrl.addEventListener("change", ctrlVolume);
+
 }
 
 function playSong(){
@@ -96,15 +92,6 @@ function setBuffer(){
     }
 }
 
-function giveVolumeHoverMsgIn(event){
-    /**
-     * show messages when the hover on the volume icon.  
-     */
-    console.log("moseover")
-    logElement.textContent = `Scroll up/down to control volume. Press to mute/unmute.\n Current gain ${currentGain}`
-    // event.target.addEventListener("");
-
-}
 
 function ctrlVolume(event){
     /**
@@ -124,6 +111,11 @@ function ctrlVolume(event){
         }
         else gainNode.gain.value = 1;
     }
+}
 
+function gainAdjust(event){
+    /**
+     * control volume  
+     */
 
 }
