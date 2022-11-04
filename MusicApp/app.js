@@ -9,15 +9,19 @@ const playpause = document.querySelector("#pp")
 const lable = document.getElementById("lb");
 const logElement = document.getElementById("vis");
 const volumeCtrl = document.getElementById("volume-ctrl");
+const volumelevelCtrl = document.getElementById("v-level");
+
+
+// variables
 let currentGain;
 let tempGain; // to store the previous gain value when muted
-
+let buffer =  null;
 
 // testing
 const audioContext = new AudioContext();
 const source = audioContext.createBufferSource();
 let gainNode = audioContext.createGain();
-let buffer =  null;
+
 window.onload = main;
 
 
@@ -29,7 +33,8 @@ function main(){
        setBuffer();
 
     }
-
+    gainNode.gain.value = 0.6;
+    volumelevelCtrl.textContent = `60%`
     playpause.addEventListener("change", (event)=>{
         const target = event.target;
         let target_status = target.checked;
@@ -50,6 +55,21 @@ function main(){
         
     });
     volumeCtrl.addEventListener("change", ctrlVolume);
+    volumelevelCtrl.addEventListener("wheel", event => {
+        const delta = Math.sign(event.deltaY);
+        if(delta==+1){
+           gainNode.gain.value += 0.05;
+           if(gainNode.gain.value >=1){
+            gainNode.gain.value = 1;
+           }
+        }
+        else gainNode.gain.value -= 0.05;
+        if(gainNode.gain.value <= 0){
+            gainNode.gain.value = 0;
+        }
+        currentGain = Math.round(gainNode.gain.value * 100);
+        volumelevelCtrl.textContent = `${currentGain}%`
+    });
 
 }
 
