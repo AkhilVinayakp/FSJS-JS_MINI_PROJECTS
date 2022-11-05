@@ -4,6 +4,11 @@ let song_urls = [
     "https://dl.dropboxusercontent.com/s/877yjaidp4tpx8j/Lost%20Files%20-%20Behind%20The%20Hill.mp3?dl=0"
 ]
 
+let songs = [
+    {name:"Ay ..", id:1}, {name:"hey..", id:2}, {name:'hey mama', id:3}
+];
+
+
 // controlls
 const playpause = document.querySelector("#pp");
 const lable = document.getElementById("lb");
@@ -13,7 +18,8 @@ const volumelevelCtrl = document.getElementById("v-level");
 const timeline = document.getElementById("timeline");
 const timelineContainer = document.getElementById("t-container");
 const current_time =  document.getElementById("current-t");
-
+const nextSongElement = document.getElementById("next_btn");
+const prevSongElement = document.getElementById("prev_btn");
 
 // variables
 let currentGain;
@@ -24,6 +30,7 @@ let runner = null; // setIntervel object : may deprecate in the later refactor.
 
 // variable for controling the timeline view and time runner
 let timelineRunner = 0; // update when the audio pause Event.
+let currentSongId = 1;
 
 
 // testing
@@ -80,6 +87,8 @@ function main(){
         currentGain = Math.round(gainNode.gain.value * 100);
         volumelevelCtrl.textContent = `${currentGain}%`
     });
+    nextSongElement.addEventListener("click", fetchNextSong);
+    prevSongElement.addEventListener("click", fetchPrevSong);
 
 }
 
@@ -104,13 +113,13 @@ function playSong(){
 }
 
 
-function setBuffer(){
+function setBuffer(s_id = '1'){
     /**
      *   
      */
     const request = new XMLHttpRequest();
     try{
-        request.open("Get", "./assets/song1.mp3");
+        request.open("Get", `./assets/song${s_id}.mp3`);
         // changing the response type to array buffer.
         request.responseType = "arraybuffer";
         request.onload = function() {
@@ -226,4 +235,21 @@ function split_time(dtime){
     console.log(dtime)
     dtime = dtime + mm;
     return dtime
+}
+
+function fetchNextSong(){
+    // let next_song_id = 0;
+    // if(currentSongId<songs.length){
+    //     next_song_id = currentSongId + 1;
+    // }
+    // source.stop();
+    // setBuffer(s_id=next_song_id);
+    // prevSongId = currentSongId;
+    // currentSongId = next_song_id;
+    // playSong();
+    logElement.textContent = "Not available Now"
+}
+
+function fetchPrevSong(){
+    logElement.textContent = "Not available"
 }
