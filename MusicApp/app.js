@@ -11,7 +11,8 @@ const logElement = document.getElementById("vis");
 const volumeCtrl = document.getElementById("volume-ctrl");
 const volumelevelCtrl = document.getElementById("v-level");
 const timeline = document.getElementById("timeline");
-const timelineContainer = document.getElementById("t-container")
+const timelineContainer = document.getElementById("t-container");
+const current_time =  document.getElementById("current-t");
 
 
 // variables
@@ -19,7 +20,11 @@ let currentGain;
 let tempGain; // to store the previous gain value when muted
 let buffer =  null;
 let c_duration = null;
-let runner = null;
+let runner = null; // setIntervel object : may deprecate in the later refactor.
+
+// variable for controling the timeline view and time runner
+let timelineRunner = 0; // update when the audio pause Event.
+
 
 // testing
 const audioContext = new AudioContext();
@@ -54,7 +59,8 @@ function main(){
             else playSong();
         }
         else{
-            audioContext.suspend().then(()=>logElement.textContent="suspended")
+            audioContext.suspend().then(()=>logElement.textContent="suspended");
+            clearInterval(runner);
         }
         
     });
@@ -87,22 +93,14 @@ function playSong(){
     source.buffer = buffer;
     let duration = source.buffer.duration;
     console.log("buffer duration ", duration)
-    let mm = duration%60;
-    mm = Math.round(mm);
-    mm = mm/100
-    console.log(mm)
-    duration = Math.floor(duration/60);
-    console.log(duration)
-    duration = duration + mm;
-
-    
+    duration = split_time(duration)
     duration = duration.toFixed(2);
     console.log("proccess duration ", duration)
     source.connect(gainNode);
     gainNode.connect(audioContext.destination);
     source.start();
     currentGain = gainNode.gain.value;
-    setTimeline(duration, source.buffer.duration);
+    // setTimeline(duration, source.buffer.duration); bug feature removed.
 }
 
 
@@ -154,7 +152,6 @@ function ctrlVolume(event){
 function setTimeline(duration, buffer_value){
     console.log("total duration ", duration)
     const total_time = document.getElementById("total-t");
-    const current_time =  document.getElementById("current-t");
     timelineContainer.classList.remove("hidden");
     let durationStr = String(duration).split('.');
     durationStr = durationStr.join(":");
@@ -182,4 +179,51 @@ function setTimeline(duration, buffer_value){
 
     }, 1000);
 
+}
+
+// function setTimeline(duration, buffer_value){
+//     console.log("total duration ", duration)
+//     const total_time = document.getElementById("total-t");
+//     const current_time =  document.getElementById("current-t");
+//     timelineContainer.classList.remove("hidden");
+//     let durationStr = String(duration).split('.');
+//     durationStr = durationStr.join(":");
+//     total_time.textContent = durationStr;
+//     updateView(buffer_value);
+// }
+
+// function updateView(buffer_value, isPaused=false){
+//     // current_time
+//     //update the timeline and runner in UI
+//     // suppport for pause and resume.
+//     // NOTE: Logic update.
+//     let delta; // runner variable local to match upto the value 
+//     if(isPaused){
+//         delta = timelineRunner;
+//     }
+//     else delta = 0;
+//     while(delta< buffer_value){
+//         delta += 1;
+//         setTimeout(()=>{
+//             // update the view in each second only.
+//             let c_value = split_time(delta);
+//             c_value = c_value.toFixed(2);
+//             c_value = c_value.split(".");
+//             current_time.textContent = c_value.join(':');
+//             let t_percent = (delta/buffer_value) * 100;
+//             t_percent = Math.round(t_percent)
+//             timeline.setAttribute("value", t_percent);
+//         },1000);
+//     }
+
+// }
+function split_time(dtime){
+    let mm = dtime%60;
+    mm = Math.round(mm);
+    mm = mm/100
+    console.log(mm)
+    dtime = Math.floor(dtime/60);
+    console.log(dtime)
+    dtime = dtime + mm;
+    return dtime
 }
