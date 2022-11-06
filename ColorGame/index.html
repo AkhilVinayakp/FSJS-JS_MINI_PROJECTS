@@ -12,41 +12,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Smythe&display=swap" rel="stylesheet"> 
 </head>
 <body >
-    <div class="flex justify-center h-screen items-center py-12">
+    <div class="flex justify-center h-screen items-center py-28">
         <div class="card w-[956px] h-full glass">
             <div class="card-body">
                 <div class="flex  gap-24">
                     <div class="side-content flex flex-col gap-4">
                         <h2 class="text-3xl mb-8">ColorGame</h2>
                         <div class="btn gap-2 ">
-                            <div id="count_T" class="badge badge-secondary">00</div> Games
+                            <div id="count_g" class="badge badge-secondary">00</div> Games
                         </div>
                         <div class="btn gap-2 ">
-                            <div id="count_" class="badge badge-secondary">00</div> Wins
+                            <div id="count_w" class="badge badge-secondary">00</div> Wins
                         </div>
                         <div class="btn gap-2 ">
-                            <div id="count_" class="badge badge-secondary">00</div> Losses
+                            <div id="count_l" class="badge badge-secondary">00</div> Losses
+                        </div>
+                        <div class="card-actions justify-end mt-12">
+                            <button id="clear" class="btn btn-primary">Clear All Status</button>
                         </div>
                     </div> 
-                    <div class="main-content flex flex-col ml-12 gap-12">
+                    <div class="main-content flex flex-col ml-2 gap-12">
                         <div id="initial_load" class="text-2xl"> Pick A color to Start</div>
                         <div id="current_selections" class="h-64"></div>
-                        <div class="flex flex-row justify-between">
+                        <div id="pContainer" class="flex flex-row justify-between gap-4">
                             <template id="color-schema">
-                                <div class="card w-14 h-20 bg-base-100 shadow-xl">
-                                    <div class="card-body"></div>
+                                <button class="btn card w-14 h-20  shadow-xl">
+                                   
                                 </div>
                             </template>
                         </div>
                     </div> 
-                    <div class="card-actions justify-end mt-12">
-                        <button id="clear" class="btn btn-primary">Clear All Status</button>
-                    </div>
                 </div>
             </div>
 
           </div>
 
-
-</body>
+          <script src="./app.js"></script>
+    </body>
 </html>
