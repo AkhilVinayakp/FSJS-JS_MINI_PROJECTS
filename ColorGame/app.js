@@ -7,6 +7,7 @@ const colorSchemas = document.getElementById("color-schema");
 const palletContainer = document.getElementById("pContainer");
 const userChoiceElement = document.getElementById("user-choice");
 const systemChoiceElement = document.getElementById("system-choice");
+const clearAllElemet = document.getElementById("clear");
 let prev_systemChoice = "";
 let prev_userChoice = ""
 let cOrders = [];
@@ -19,6 +20,7 @@ window.onload = main
 function main(){
     //
     generateColorPalletView();
+    clearAllElemet.addEventListener('click', clearValues);
 }
 
 function generateColorPalletView(){
@@ -30,7 +32,7 @@ function generateColorPalletView(){
         colorElement.classList.add(`order-${order}`);
         cOrders.push(`order-${order}`);
         order +=1;
-        console.log(colorElement)
+        // console.log(colorElement)
         palletContainer.append(colorElement);
     })
 }
@@ -40,8 +42,9 @@ function userSelection(event){
     let userChoice = null
     event.target.classList.forEach((item)=>{
         let eleIndex = colorsDaisy.indexOf(item)
-        eleIndex = eleIndex<0 ? false : eleIndex;
-        if(eleIndex){
+        eleIndex = eleIndex<0 ? -1 : eleIndex;
+        console.log(eleIndex, item)
+        if(eleIndex != -1){
             userChoice = colorsDaisy[eleIndex];
         }
     });
@@ -81,4 +84,15 @@ function setResults(userChoice, compChoice){
     prev_systemChoice = compChoice;
 
     
+}
+
+function clearValues(){
+    currentGames = 0;
+    currentLoss = 0;
+    currentWins = 0;
+    selectionCanvasEle.classList.add("hidden");
+    totalGamesEle.textContent = "00";
+    totalLossEle.textContent = "00";
+    totalWinsEle.textContent = "00";
+
 }
