@@ -47,15 +47,13 @@ function userSelection(event){
     });
     console.log('Users Choice', userChoice);
     // gerate the computer choice
-    let compChoice = randomPick(colorsDaisy.filter((item)=>{
-        return item != userChoice;
-    }));
+    let compChoice = randomPick();
     setResults(userChoice, compChoice)
 }
 
-function randomPick(selectioArray){
-    const randIndex = Math.floor(Math.random() * selectioArray.length);
-    return selectioArray[randIndex]
+function randomPick(){
+    const randIndex = Math.floor(Math.random() * colorsDaisy.length);
+    return colorsDaisy[randIndex]
 }
 
 function setResults(userChoice, compChoice){
