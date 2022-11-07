@@ -43,12 +43,10 @@ function userSelection(event){
     event.target.classList.forEach((item)=>{
         let eleIndex = colorsDaisy.indexOf(item)
         eleIndex = eleIndex<0 ? -1 : eleIndex;
-        console.log(eleIndex, item)
         if(eleIndex != -1){
             userChoice = colorsDaisy[eleIndex];
         }
     });
-    console.log('Users Choice', userChoice);
     // gerate the computer choice
     let compChoice = randomPick();
     setResults(userChoice, compChoice)
