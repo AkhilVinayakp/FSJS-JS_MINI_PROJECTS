@@ -33,12 +33,28 @@
                     </div> 
                     <div class="main-content flex flex-col ml-2 gap-12">
                         <div id="initial_load" class="text-2xl"> Pick A color to Start</div>
-                        <div id="current_selections" class="h-64"></div>
+                        <div  class="h-64">
+                            <div id="current_selections" class="flex justify-around hidden">
+                                <div>
+                                    <span class="text-xl">Your Selection</span>
+                                    <div class="mt-10 ml-6">
+                                        <button id="user-choice" class="btn card w-24 h-20  shadow-xl"></button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="text-xl">Computer Selection</span>
+                                    <div class="mt-10 ml-6">
+                                        <button id="system-choice" class="btn card w-24 h-20  shadow-xl"></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                         <div id="pContainer" class="flex flex-row justify-between gap-4">
                             <template id="color-schema">
-                                <button class="btn card w-14 h-20  shadow-xl">
+                                <button class="btn card w-24 h-20  shadow-xl">
                                    
-                                </div>
+                                </button>
                             </template>
                         </div>
                     </div> 
