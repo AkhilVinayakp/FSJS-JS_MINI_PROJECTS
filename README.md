@@ -18,3 +18,11 @@ Small Apps with JS 🤖!
 |05RockPaperScissor| [code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_APPS/tree/main/05RockPaperScissor)|[Live](https://deft-otter-8a8238.netlify.app/)|
 |06JokesGenerator - API| [code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_APPS/tree/main/06JokesGenerator%20-%20API)|[Live](https://superlative-croquembouche-e068cf.netlify.app/)|
 |07QRCodeGenerator - API| [code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_APPS/tree/main/07QRCodeGenerator%20-%20API)|[Live](https://mellifluous-treacle-65335b.netlify.app/)|
+
+
+
+- ### Projects from JavaScript Project Doc
+
+| Name | GitHub | Deployed Link|
+| ---- | ----   |  ----------  |
+|ColorGame| [code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_PROJECTS/tree/main/ColorGame)| [live](https://super-fudge-b7f866.netlify.app/)|
