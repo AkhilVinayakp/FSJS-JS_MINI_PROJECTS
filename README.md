@@ -25,4 +25,10 @@ Small Apps with JS 🤖!
 
 | Name | GitHub | Deployed Link|
 | ---- | ----   |  ----------  |
-|ColorGame| [code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_PROJECTS/tree/main/ColorGame)| [live](https://super-fudge-b7f866.netlify.app/)|
+|01.ColorGame| [code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_PROJECTS/tree/main/ColorGame)| [live](https://super-fudge-b7f866.netlify.app/)|
+|02.MusicApp | [code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_PROJECTS/tree/main/MusicApp) | [live](https://glittering-dolphin-965806.netlify.app/)|
+|03.ToDO App | [code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_PROJECTS/tree/main/TODOApp)  | [live](https://ornate-bombolone-cc925d.netlify.app/) |
+|04.ThemeChanger| [code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_PROJECTS/tree/main/ThemeChanger) | [live](https://wondrous-rugelach-01ee76.netlify.app/)|
+|05.WordCount|[code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_PROJECTS/tree/main/WordCount)| [live](https://bejewelled-treacle-605d1e.netlify.app/)|
+|06.stopwatch|[code](https://github.com/AkhilVinayakp/FSJS-JS_MINI_PROJECTS/tree/main/stopwatch)| [live](https://stirring-boba-8ef831.netlify.app/)|
+|07.CardRememberGame| [code](https://github.com/AkhilVinayakp/RememberMe)| [live](https://rememberme-v0.netlify.app/)|
